@@ -19,9 +19,10 @@
     <a class="project-card reveal" href="projects/${project.id}.html" data-project-card data-category="${project.category}">
       ${visualMarkup(project)}
       <div class="project-content">
-        <div class="project-topline"><span>${project.category}</span><span>${project.period}</span></div>
+        <div class="project-topline"><span>${project.displayCategory || project.category}</span><span>${project.period}</span></div>
         <h3>${project.title}</h3>
         <p>${project.description}</p>
+        ${project.award ? `<p class="project-award">${project.award}</p>` : ""}
         <div class="project-bottom"><div class="tag-list">${project.tags.map((tag) => `<span>${tag}</span>`).join("")}</div><span class="card-arrow" aria-hidden="true">↗</span></div>
       </div>
     </a>`;
@@ -51,7 +52,7 @@
     const list = document.querySelector("[data-awards-list]");
     if (!list) return;
     list.innerHTML = awards.map((item) => `
-      <article class="award-row reveal"><span>${item.date}</span><div><h3>${item.title}</h3>${item.subtitle ? `<p>${item.subtitle}</p>` : ""}</div><strong>${item.award}</strong></article>`).join("");
+      <article class="award-row reveal"><span>${item.date}</span><div><h3>${item.title}</h3>${item.subtitle ? `<p>${item.subtitle}</p>` : ""}${item.projectTitle ? `<a class="award-project-link" href="${item.projectLink}">${item.projectTitle} <span aria-hidden="true">↗</span></a>` : ""}</div><strong>${item.award}</strong></article>`).join("");
   };
 
   const renderActivities = () => {

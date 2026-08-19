@@ -14,13 +14,27 @@ const projects = [
   {
     id: "mom-map",
     title: "맘편할 지도",
-    description: "서울어린이대공원 공모전 프로젝트 · 참여중",
+    description: "서울어린이대공원 이용 가족을 위한 AI 기반 맞춤형 이동 동선 서비스.",
     category: "Product",
     type: "AI · UX",
     period: "참여중",
-    tags: ["Route Optimization", "UX", "Family"],
+    tags: ["AI", "Route Optimization", "Data", "Human-Centered Design", "Family"],
     visual: "mom-map",
     visualLabel: "A calmer route",
+    featured: true,
+  },
+  {
+    id: "greencity-ai",
+    title: "GreenCity AI",
+    description: "도시열섬 완화를 위한 AI 기반 녹화 추천 서비스",
+    category: "Data",
+    displayCategory: "AI · Data · Environment",
+    type: "AI · Data · Environment",
+    period: "2026.06.05",
+    award: "2026년 AI·SW 융합 페스티벌 장려상",
+    tags: ["AI", "Data", "Environment"],
+    visual: "greencity",
+    visualLabel: "Cooler city, greener choices",
     featured: true,
   },
   {
@@ -47,18 +61,6 @@ const projects = [
     visualLabel: "Education & mentoring",
     featured: false,
   },
-  {
-    id: "childrens-park",
-    title: "어린이대공원 공모전 프로젝트",
-    description: "서울어린이대공원 공모전에 참여 중인 프로젝트.",
-    category: "Design",
-    type: "Human-centered",
-    period: "참여중",
-    tags: ["Observation", "Service Design", "UX"],
-    visual: "childrens-park",
-    visualLabel: "A park, re-seen",
-    featured: true,
-  },
 ];
 
 const highlights = [
@@ -81,7 +83,7 @@ const experiences = [
 
 const awards = [
   { date: "2026.07.06 — 2026.07.24", title: "경기실록지리지", award: "우수상" },
-  { date: "2026.06.05", title: "2026년 AI·SW 융합 페스티벌", award: "장려상" },
+  { date: "2026.06.05", title: "2026년 AI·SW 융합 페스티벌", award: "장려상", projectTitle: "GreenCity AI", projectLink: "projects/greencity-ai.html" },
   { date: "2025.05.09", title: "경희대학교 공과대학 캐치프라이즈 공모전", award: "최우수상" },
   { date: "2024.12.27", title: "2024 FLIP DEMO DAY", subtitle: "경희대학교 벤처 창업동아리 대회", award: "우수상" },
 ];
