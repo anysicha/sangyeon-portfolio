@@ -43,8 +43,11 @@
   const renderHighlights = () => {
     const grid = document.querySelector("[data-highlights]");
     if (!grid) return;
+    const highlightTitle = (item) => item.link
+      ? `<a href="${item.link}">${item.title} <span class="inline-arrow" aria-hidden="true">↗</span></a>`
+      : item.title;
     grid.innerHTML = highlights.map((item) => `
-      <article class="highlight-item reveal"><span class="highlight-no">${item.number}</span><div><h3>${item.title}</h3><p class="highlight-period">${item.period}</p><p>${item.description}</p></div></article>`).join("");
+      <article class="highlight-item reveal"><span class="highlight-no">${item.number}</span><div><h3>${highlightTitle(item)}</h3><p class="highlight-period">${item.period}</p><p>${item.description}</p></div></article>`).join("");
   };
 
   const renderExperiences = () => {
