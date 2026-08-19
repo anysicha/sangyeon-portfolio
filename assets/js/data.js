@@ -60,7 +60,7 @@ const projects = [
 ];
 
 const highlights = [
-  { number: "01", title: "공군 조종장학생", period: "2024 — Present", description: "공군 조종장학생으로 선발되어 현재 자격 유지 중." },
+  { number: "01", title: "공군 조종장학생", period: "2024 — Present", description: "전투조종사라는 꿈을 실현하기 위해 공군 조종장학생에 도전해 선발되었고, 현재도 도전 중." },
   { number: "02", title: "인간중심설계 연구실 조교", period: "2026.05.01 — Present", description: "Human-Centered Design / Research" },
   { number: "03", title: "FINDS LAB 인턴 2기", period: "2026.05.01 — Present", description: "현재 진행 중인 인턴 경험." },
   { number: "04", title: "2026년 AI·SW 융합 페스티벌 장려상", period: "2026.06.05", description: "AI·SW 융합 페스티벌 장려상" },
@@ -74,7 +74,7 @@ const experiences = [
   { title: "경희대학교 자율전공학부 멘토", period: "2026-1", category: "Mentoring" },
   { title: "인간중심설계 연구실 조교", period: "2026.05.01 — Present", category: "Human-Centered Design / Research" },
   { title: "GS 산학 마케팅", period: "2024.11.06 — 2024.12.31", category: "Industry / Marketing" },
-  { title: "공군 조종장학생", period: "2024 — Present", category: "Personal profile" },
+  { title: "공군 조종장학생", period: "2024 — Present", category: "Personal profile", link: "projects/airforce-pilot.html" },
 ];
 
 const awards = [
