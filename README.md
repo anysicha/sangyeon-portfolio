@@ -29,6 +29,7 @@
 
 ## 연락처 및 개인 정보 수정
 
-- GitHub 주소: `index.html`의 `https://github.com/` 링크를 개인 프로필 주소로 교체
-- 이메일: `index.html`의 연락처 플레이스홀더를 실제 이메일로 교체
+- GitHub 주소: `https://github.com/anysicha`
+- 이메일: `anysicha@naver.com`
+- Instagram: `https://www.instagram.com/top_year17/`
 - 프로필 이미지: 이미지가 준비되면 `assets/images/profile.jpg`를 추가하고 `index.html`의 플레이스홀더 영역을 이미지로 교체

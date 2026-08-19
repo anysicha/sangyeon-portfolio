@@ -3,12 +3,14 @@
   const year = document.querySelector("[data-year]");
   const menuToggle = document.querySelector(".menu-toggle");
   const siteNav = document.querySelector(".site-nav");
+  const projectData = typeof projects !== "undefined" ? projects : [];
+  const featuredProjects = projectData.filter((project) => project.featured !== false);
 
   if (year) year.textContent = new Date().getFullYear();
 
   const visualMarkup = (project) => `
     <div class="project-visual visual-${project.visual}" aria-hidden="true">
-      <span class="visual-index">0${projects.indexOf(project) + 1}</span>
+      <span class="visual-index">0${featuredProjects.indexOf(project) + 1}</span>
       <span class="visual-label">${project.visualLabel}</span>
       <span class="visual-shape shape-a"></span><span class="visual-shape shape-b"></span><span class="visual-shape shape-c"></span>
     </div>`;
@@ -26,12 +28,75 @@
 
   const renderProjects = (filter = "all") => {
     if (!projectGrid) return;
-    const visibleProjects = filter === "all" ? projects : projects.filter((project) => project.category === filter);
+    const visibleProjects = filter === "all" ? featuredProjects : featuredProjects.filter((project) => project.category === filter);
     projectGrid.innerHTML = visibleProjects.map(projectMarkup).join("");
     requestAnimationFrame(() => projectGrid.querySelectorAll(".reveal").forEach((item) => item.classList.add("is-visible")));
   };
 
+  const renderHighlights = () => {
+    const grid = document.querySelector("[data-highlights]");
+    if (!grid) return;
+    grid.innerHTML = highlights.map((item) => `
+      <article class="highlight-item reveal"><span class="highlight-no">${item.number}</span><div><h3>${item.title}</h3><p class="highlight-period">${item.period}</p><p>${item.description}</p></div></article>`).join("");
+  };
+
+  const renderExperiences = () => {
+    const timeline = document.querySelector("[data-experience-list]");
+    if (!timeline) return;
+    timeline.innerHTML = experiences.map((item) => `
+      <article class="timeline-item reveal"><p class="timeline-date">${item.period}</p><div><h3>${item.link ? `<a href="${item.link}">${item.title} <span class="inline-arrow" aria-hidden="true">↗</span></a>` : item.title}</h3><span class="timeline-tag">${item.category}</span></div></article>`).join("");
+  };
+
+  const renderAwards = () => {
+    const list = document.querySelector("[data-awards-list]");
+    if (!list) return;
+    list.innerHTML = awards.map((item) => `
+      <article class="award-row reveal"><span>${item.date}</span><div><h3>${item.title}</h3>${item.subtitle ? `<p>${item.subtitle}</p>` : ""}</div><strong>${item.award}</strong></article>`).join("");
+  };
+
+  const renderActivities = () => {
+    const list = document.querySelector("[data-activities-list]");
+    if (!list) return;
+    list.innerHTML = activities.map((item) => `
+      <article class="info-row reveal"><span>${item.period}</span><div><h3>${item.title}</h3><p>${item.flow ? `${item.previous}  ·  ${item.flow}` : item.category}</p></div></article>`).join("");
+  };
+
+  const renderCompetitions = () => {
+    const list = document.querySelector("[data-competitions-list]");
+    if (!list) return;
+    list.innerHTML = competitions.map((item) => `
+      <article class="info-row reveal"><span>${item.date}</span><div><h3>${item.title}</h3><p>${item.result}</p></div></article>`).join("");
+  };
+
+  const renderPrograms = () => {
+    const list = document.querySelector("[data-programs-list]");
+    if (!list) return;
+    list.innerHTML = programs.map((item) => `
+      <article class="info-row reveal"><span>${item.date}</span><div><h3>${item.title}</h3>${item.detail ? `<p>${item.detail}</p>` : ""}</div></article>`).join("");
+  };
+
+  const renderEducation = () => {
+    const list = document.querySelector("[data-education-list]");
+    if (!list) return;
+    list.innerHTML = education.map((item) => `
+      <article class="info-row reveal"><span>${item.date}</span><div><h3>${item.title}</h3><p>${item.detail}</p></div></article>`).join("");
+  };
+
+  const renderCertifications = () => {
+    const list = document.querySelector("[data-certifications-list]");
+    if (!list) return;
+    list.innerHTML = certifications.map((item) => `<article class="certification-item reveal"><span aria-hidden="true">✓</span><h3>${item.title}</h3></article>`).join("");
+  };
+
+  renderHighlights();
   renderProjects();
+  renderExperiences();
+  renderAwards();
+  renderActivities();
+  renderCompetitions();
+  renderPrograms();
+  renderEducation();
+  renderCertifications();
 
   document.querySelectorAll("[data-filter]").forEach((button) => {
     button.addEventListener("click", () => {
