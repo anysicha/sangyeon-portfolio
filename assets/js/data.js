@@ -19,6 +19,7 @@ const projects = [
     tags: ["AI", "Route Optimization", "Data", "Human-Centered Design", "Family"],
     visual: "mom-map",
     visualLabel: "A calmer route",
+    thumbnail: "assets/images/mom-map/mom-map-05.jpg",
     featured: true,
   },
   {

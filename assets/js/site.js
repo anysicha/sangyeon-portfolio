@@ -9,10 +9,11 @@
   if (year) year.textContent = new Date().getFullYear();
 
   const visualMarkup = (project) => `
-    <div class="project-visual visual-${project.visual}" aria-hidden="true">
+    <div class="project-visual ${project.thumbnail ? "project-visual-image" : `visual-${project.visual}`}" aria-hidden="true">
+      ${project.thumbnail ? `<img src="${project.thumbnail}" alt="" />` : ""}
       <span class="visual-index">0${featuredProjects.indexOf(project) + 1}</span>
       <span class="visual-label">${project.visualLabel}</span>
-      <span class="visual-shape shape-a"></span><span class="visual-shape shape-b"></span><span class="visual-shape shape-c"></span>
+      ${project.thumbnail ? "" : `<span class="visual-shape shape-a"></span><span class="visual-shape shape-b"></span><span class="visual-shape shape-c"></span>`}
     </div>`;
 
   const projectMarkup = (project) => `
