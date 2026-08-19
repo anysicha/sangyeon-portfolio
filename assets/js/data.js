@@ -69,6 +69,8 @@ const highlights = [
   { number: "04", title: "2026년 AI·SW 융합 페스티벌 장려상", period: "2026.06.05", description: "AI·SW 융합 페스티벌 장려상" },
   { number: "05", title: "경기실록지리지 우수상", period: "2026.07.06 — 2026.07.24", description: "경기실록지리지 우수상" },
   { number: "06", title: "KVS 10기 성장팀 선정", period: "2024.11.18 — 2024.12.13", description: "KVS(KHU Valley Start-up) 10기 성장팀 · 사업자금 300만원 지원" },
+  { number: "07", title: "경기도서관 AI 썸머스쿨 교육 멘토", period: "2026.08", description: "주강사·보조강사로 참여한 초등학생 대상 AI 체험형 수업 운영.", link: "projects/ai-education.html" },
+  { number: "08", title: "동아리 언론지대 부회장", period: "2026", description: "2025-2 총무를 거쳐 2026년도 부회장으로 활동." },
 ];
 
 const experiences = [
