@@ -39,10 +39,10 @@ const projects = [
   {
     id: "finance",
     title: "금융 데이터 분석 / 연구",
-    description: "KOSPI200, ETF, Futures 등의 데이터를 활용한 금융 데이터 분석 및 연구 프로젝트.",
+    description: "오버나이트 갭하락 위험 보장상품의 설계와 가격결정을 연구 중인 금융 데이터 프로젝트.",
     category: "Data",
     type: "Research",
-    tags: ["Python", "Financial Data", "Statistics"],
+    tags: ["Python", "KOSPI200", "Derivatives"],
     visual: "finance",
     visualLabel: "Signals in data",
     featured: true,
@@ -71,7 +71,7 @@ const highlights = [
 
 const experiences = [
   { title: "경기도서관 AI 썸머스쿨 교육 멘토", period: "2026.08", category: "Education / Mentoring", link: "projects/ai-education.html" },
-  { title: "FINDS LAB 인턴 2기", period: "2026.05.01 — Present", category: "Internship" },
+  { title: "FINDS LAB 인턴 2기", period: "2026.05.01 — Present", category: "Internship", link: "https://findslab.github.io/site/members/detail/ksy2-undergrad", external: true },
   { title: "경희대학교 자율전공학부 멘토", period: "2026-1", category: "Mentoring" },
   { title: "인간중심설계 연구실 조교", period: "2026.05.01 — Present", category: "Human-Centered Design / Research" },
   { title: "GS 산학 마케팅", period: "2024.11.06 — 2024.12.31", category: "Industry / Marketing" },

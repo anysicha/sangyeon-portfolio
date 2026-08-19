@@ -50,8 +50,13 @@
   const renderExperiences = () => {
     const timeline = document.querySelector("[data-experience-list]");
     if (!timeline) return;
+    const experienceTitle = (item) => {
+      if (!item.link) return item.title;
+      const externalAttributes = item.external ? ' target="_blank" rel="noreferrer"' : "";
+      return `<a href="${item.link}"${externalAttributes}>${item.title} <span class="inline-arrow" aria-hidden="true">↗</span></a>`;
+    };
     timeline.innerHTML = experiences.map((item) => `
-      <article class="timeline-item reveal"><p class="timeline-date">${item.period}</p><div><h3>${item.link ? `<a href="${item.link}">${item.title} <span class="inline-arrow" aria-hidden="true">↗</span></a>` : item.title}</h3><span class="timeline-tag">${item.category}</span></div></article>`).join("");
+      <article class="timeline-item reveal"><p class="timeline-date">${item.period}</p><div><h3>${experienceTitle(item)}</h3><span class="timeline-tag">${item.category}</span></div></article>`).join("");
   };
 
   const renderAwards = () => {
