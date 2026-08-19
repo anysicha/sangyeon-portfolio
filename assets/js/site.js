@@ -19,7 +19,7 @@
     <a class="project-card reveal" href="projects/${project.id}.html" data-project-card data-category="${project.category}">
       ${visualMarkup(project)}
       <div class="project-content">
-        <div class="project-topline"><span>${project.displayCategory || project.category}</span><span>${project.period}</span></div>
+        <div class="project-topline"><span>${project.displayCategory || project.category}</span></div>
         <h3>${project.title}</h3>
         <p>${project.description}</p>
         ${project.award ? `<p class="project-award">${project.award}</p>` : ""}
@@ -59,7 +59,7 @@
     const list = document.querySelector("[data-activities-list]");
     if (!list) return;
     list.innerHTML = activities.map((item) => `
-      <article class="info-row reveal"><span>${item.period}</span><div><h3>${item.title}</h3><p>${item.flow ? `${item.previous}  ·  ${item.flow}` : item.category}</p></div></article>`).join("");
+      <article class="info-row reveal"><span>${item.period}</span><div><h3>${item.title}</h3>${item.roles ? `<p>${item.roles.join("<br />")}</p>` : `<p>${item.category}</p>`}</div></article>`).join("");
   };
 
   const renderCompetitions = () => {
