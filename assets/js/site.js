@@ -8,13 +8,18 @@
 
   if (year) year.textContent = new Date().getFullYear();
 
-  const visualMarkup = (project) => `
-    <div class="project-visual ${project.thumbnail ? "project-visual-image" : `visual-${project.visual}`}" aria-hidden="true">
-      ${project.thumbnail ? `<img src="${project.thumbnail}" alt="" />` : ""}
-      <span class="visual-index">0${featuredProjects.indexOf(project) + 1}</span>
-      <span class="visual-label">${project.visualLabel}</span>
-      ${project.thumbnail ? "" : `<span class="visual-shape shape-a"></span><span class="visual-shape shape-b"></span><span class="visual-shape shape-c"></span>`}
-    </div>`;
+  const visualMarkup = (project) => {
+    const visualClass = project.thumbnail
+      ? `project-visual-image${project.thumbnailRatio === "square" ? " project-visual-square" : ""}`
+      : `visual-${project.visual}`;
+    return `
+      <div class="project-visual ${visualClass}" aria-hidden="true">
+        ${project.thumbnail ? `<img src="${project.thumbnail}" alt="" />` : ""}
+        <span class="visual-index">0${featuredProjects.indexOf(project) + 1}</span>
+        <span class="visual-label">${project.visualLabel}</span>
+        ${project.thumbnail ? "" : `<span class="visual-shape shape-a"></span><span class="visual-shape shape-b"></span><span class="visual-shape shape-c"></span>`}
+      </div>`;
+  };
 
   const projectMarkup = (project) => `
     <a class="project-card reveal" href="projects/${project.id}.html" data-project-card data-category="${project.category}">
