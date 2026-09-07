@@ -86,7 +86,7 @@ const awards = [
   { date: "2026.07.06 — 2026.07.24", title: "경기실록지리지", award: "우수상" },
   { date: "2026.06.05", title: "2026년 AI·SW 융합 페스티벌", award: "장려상", projectTitle: "GreenCity AI", projectLink: "projects/greencity-ai.html" },
   { date: "2025.05.09", title: "경희대학교 공과대학 캐치프라이즈 공모전", award: "최우수상" },
-  { date: "2024.12.27", title: "2024 FLIP DEMO DAY", subtitle: "경희대학교 벤처 창업동아리 대회", award: "우수상" },
+  { date: "2024.12.27", title: "2024 FLIP DEMO DAY", subtitle: "경희대학교 벤처 창업동아리 대회", award: "우수상", image: "assets/images/hero-slides/hero-activity-04.jpg", imageAlt: "2024 FLIP DEMO DAY 우수상 수상 사진" },
 ];
 
 const activities = [

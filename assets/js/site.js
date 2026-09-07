@@ -121,7 +121,7 @@
     const list = document.querySelector("[data-awards-list]");
     if (!list) return;
     list.innerHTML = awards.map((item) => `
-      <article class="award-row reveal"><span>${item.date}</span><div><h3>${item.title}</h3>${item.subtitle ? `<p>${item.subtitle}</p>` : ""}${item.projectTitle ? `<a class="award-project-link" href="${item.projectLink}">${item.projectTitle} <span aria-hidden="true">↗</span></a>` : ""}</div><strong>${item.award}</strong></article>`).join("");
+      <article class="award-row reveal"><span>${item.date}</span><div><h3>${item.title}</h3>${item.subtitle ? `<p>${item.subtitle}</p>` : ""}${item.projectTitle ? `<a class="award-project-link" href="${item.projectLink}">${item.projectTitle} <span aria-hidden="true">↗</span></a>` : ""}${item.image ? `<img class="award-photo" src="${item.image}" alt="${item.imageAlt || item.title}" loading="lazy" />` : ""}</div><strong>${item.award}</strong></article>`).join("");
   };
 
   const renderActivities = () => {
