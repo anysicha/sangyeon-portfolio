@@ -8,6 +8,61 @@
 
   if (year) year.textContent = new Date().getFullYear();
 
+  const profileSlideshow = document.querySelector("[data-profile-slideshow]");
+  if (profileSlideshow) {
+    const slideTrack = profileSlideshow.querySelector(".profile-slides");
+    const counter = profileSlideshow.querySelector("[data-slideshow-counter]");
+    const toggle = profileSlideshow.querySelector("[data-slideshow-toggle]");
+    const slides = [...profileSlideshow.querySelectorAll(".profile-slide")];
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    for (let index = slides.length - 1; index > 0; index -= 1) {
+      const randomIndex = Math.floor(Math.random() * (index + 1));
+      [slides[index], slides[randomIndex]] = [slides[randomIndex], slides[index]];
+    }
+    slides.forEach((slide) => slideTrack.appendChild(slide));
+
+    let currentSlide = 0;
+    let slideshowTimer;
+    let isPaused = reducedMotion;
+
+    const showSlide = (index) => {
+      slides.forEach((slide, slideIndex) => slide.classList.toggle("is-active", slideIndex === index));
+      if (counter) counter.textContent = `${String(index + 1).padStart(2, "0")} / ${String(slides.length).padStart(2, "0")}`;
+    };
+
+    const stopSlideshow = () => window.clearInterval(slideshowTimer);
+    const startSlideshow = () => {
+      stopSlideshow();
+      if (isPaused || slides.length < 2 || document.hidden) return;
+      slideshowTimer = window.setInterval(() => {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+      }, 4500);
+    };
+
+    const updateToggle = () => {
+      if (!toggle) return;
+      const label = isPaused ? "사진 슬라이드 재생" : "사진 슬라이드 일시정지";
+      toggle.setAttribute("aria-label", label);
+      toggle.setAttribute("title", label);
+      toggle.querySelector("span").textContent = isPaused ? "▶" : "Ⅱ";
+    };
+
+    showSlide(currentSlide);
+    updateToggle();
+    startSlideshow();
+
+    toggle?.addEventListener("click", () => {
+      isPaused = !isPaused;
+      updateToggle();
+      startSlideshow();
+    });
+    profileSlideshow.addEventListener("mouseenter", stopSlideshow);
+    profileSlideshow.addEventListener("mouseleave", startSlideshow);
+    document.addEventListener("visibilitychange", startSlideshow);
+  }
+
   const visualMarkup = (project) => {
     const visualClass = project.thumbnail
       ? `project-visual-image${project.thumbnailRatio === "square" ? " project-visual-square" : ""}`
