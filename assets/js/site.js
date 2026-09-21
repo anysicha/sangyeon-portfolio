@@ -3,12 +3,17 @@
   const year = document.querySelector("[data-year]");
   const menuToggle = document.querySelector(".menu-toggle");
   const siteNav = document.querySelector(".site-nav");
-  const projectData = typeof projects !== "undefined" ? projects : [];
-  const featuredProjects = projectData.filter((project) => project.featured !== false);
+  let currentFilter = "all";
+
+  const getLanguage = () => window.portfolioI18n?.getLanguage() || "ko";
+  const getText = (key) => window.portfolioI18n?.t(key, getLanguage()) || key;
+  const getData = () => window.portfolioData?.[getLanguage()] || window.portfolioData?.ko || {};
 
   if (year) year.textContent = new Date().getFullYear();
 
   const profileSlideshow = document.querySelector("[data-profile-slideshow]");
+  let updateSlideshowToggle = () => {};
+
   if (profileSlideshow) {
     const slideTrack = profileSlideshow.querySelector(".profile-slides");
     const counter = profileSlideshow.querySelector("[data-slideshow-counter]");
@@ -41,21 +46,21 @@
       }, 4500);
     };
 
-    const updateToggle = () => {
+    updateSlideshowToggle = () => {
       if (!toggle) return;
-      const label = isPaused ? "사진 슬라이드 재생" : "사진 슬라이드 일시정지";
+      const label = getText(isPaused ? "common.slideshow.resume" : "common.slideshow.pause");
       toggle.setAttribute("aria-label", label);
       toggle.setAttribute("title", label);
       toggle.querySelector("span").textContent = isPaused ? "▶" : "Ⅱ";
     };
 
     showSlide(currentSlide);
-    updateToggle();
+    updateSlideshowToggle();
     startSlideshow();
 
     toggle?.addEventListener("click", () => {
       isPaused = !isPaused;
-      updateToggle();
+      updateSlideshowToggle();
       startSlideshow();
     });
     profileSlideshow.addEventListener("mouseenter", stopSlideshow);
@@ -63,7 +68,7 @@
     document.addEventListener("visibilitychange", startSlideshow);
   }
 
-  const visualMarkup = (project) => {
+  const visualMarkup = (project, featuredProjects) => {
     const visualClass = project.thumbnail
       ? `project-visual-image${project.thumbnailRatio === "square" ? " project-visual-square" : ""}`
       : `visual-${project.visual}`;
@@ -76,9 +81,9 @@
       </div>`;
   };
 
-  const projectMarkup = (project) => `
+  const projectMarkup = (project, featuredProjects) => `
     <a class="project-card reveal" href="projects/${project.id}.html" data-project-card data-category="${project.category}">
-      ${visualMarkup(project)}
+      ${visualMarkup(project, featuredProjects)}
       <div class="project-content">
         <div class="project-topline"><span>${project.displayCategory || project.category}</span></div>
         <h3>${project.title}</h3>
@@ -88,10 +93,11 @@
       </div>
     </a>`;
 
-  const renderProjects = (filter = "all") => {
+  const renderProjects = () => {
     if (!projectGrid) return;
-    const visibleProjects = filter === "all" ? featuredProjects : featuredProjects.filter((project) => project.category === filter);
-    projectGrid.innerHTML = visibleProjects.map(projectMarkup).join("");
+    const featuredProjects = (getData().projects || []).filter((project) => project.featured !== false);
+    const visibleProjects = currentFilter === "all" ? featuredProjects : featuredProjects.filter((project) => project.category === currentFilter);
+    projectGrid.innerHTML = visibleProjects.map((project) => projectMarkup(project, featuredProjects)).join("");
     requestAnimationFrame(() => projectGrid.querySelectorAll(".reveal").forEach((item) => item.classList.add("is-visible")));
   };
 
@@ -101,7 +107,7 @@
     const highlightTitle = (item) => item.link
       ? `<a href="${item.link}">${item.title} <span class="inline-arrow" aria-hidden="true">↗</span></a>`
       : item.title;
-    grid.innerHTML = highlights.map((item) => `
+    grid.innerHTML = (getData().highlights || []).map((item) => `
       <article class="highlight-item reveal"><span class="highlight-no">${item.number}</span><div><h3>${highlightTitle(item)}</h3><p class="highlight-period">${item.period}</p><p>${item.description}</p></div></article>`).join("");
   };
 
@@ -110,86 +116,106 @@
     if (!timeline) return;
     const experienceTitle = (item) => {
       if (!item.link) return item.title;
-      const externalAttributes = item.external ? ' target="_blank" rel="noreferrer"' : "";
+      const externalAttributes = item.external ? ' target="_blank" rel="noopener noreferrer"' : "";
       return `<a href="${item.link}"${externalAttributes}>${item.title} <span class="inline-arrow" aria-hidden="true">↗</span></a>`;
     };
-    timeline.innerHTML = experiences.map((item) => `
+    timeline.innerHTML = (getData().experiences || []).map((item) => `
       <article class="timeline-item reveal"><p class="timeline-date">${item.period}</p><div><h3>${experienceTitle(item)}</h3><span class="timeline-tag">${item.category}</span></div></article>`).join("");
   };
 
   const renderAwards = () => {
     const list = document.querySelector("[data-awards-list]");
     if (!list) return;
-    list.innerHTML = awards.map((item) => `
+    list.innerHTML = (getData().awards || []).map((item) => `
       <article class="award-row reveal"><span>${item.date}</span><div><h3>${item.title}</h3>${item.subtitle ? `<p>${item.subtitle}</p>` : ""}${item.projectTitle ? `<a class="award-project-link" href="${item.projectLink}">${item.projectTitle} <span aria-hidden="true">↗</span></a>` : ""}${item.image ? `<img class="award-photo" src="${item.image}" alt="${item.imageAlt || item.title}" loading="lazy" />` : ""}</div><strong>${item.award}</strong></article>`).join("");
   };
 
   const renderActivities = () => {
     const list = document.querySelector("[data-activities-list]");
     if (!list) return;
-    list.innerHTML = activities.map((item) => `
+    list.innerHTML = (getData().activities || []).map((item) => `
       <article class="info-row reveal"><span>${item.period}</span><div><h3>${item.title}</h3>${item.roles ? `<p>${item.roles.join("<br />")}</p>` : `<p>${item.category}</p>`}</div></article>`).join("");
   };
 
   const renderCompetitions = () => {
     const list = document.querySelector("[data-competitions-list]");
     if (!list) return;
-    list.innerHTML = competitions.map((item) => `
+    list.innerHTML = (getData().competitions || []).map((item) => `
       <article class="info-row reveal"><span>${item.date}</span><div><h3>${item.title}</h3><p>${item.result}</p></div></article>`).join("");
   };
 
   const renderPrograms = () => {
     const list = document.querySelector("[data-programs-list]");
     if (!list) return;
-    list.innerHTML = programs.map((item) => `
+    list.innerHTML = (getData().programs || []).map((item) => `
       <article class="info-row reveal"><span>${item.date}</span><div><h3>${item.title}</h3>${item.detail ? `<p>${item.detail}</p>` : ""}</div></article>`).join("");
   };
 
   const renderEducation = () => {
     const list = document.querySelector("[data-education-list]");
     if (!list) return;
-    list.innerHTML = education.map((item) => `
-      <article class="info-row reveal"><span>${item.date}</span><div><h3>${item.title}</h3><p>${item.detail}</p></div></article>`).join("");
+    list.innerHTML = (getData().education || []).map((item) => `
+      <article class="info-row reveal"><span>${item.date}</span><div><h3>${item.title}</h3>${item.detail ? `<p>${item.detail}</p>` : ""}</div></article>`).join("");
   };
 
   const renderCertifications = () => {
     const list = document.querySelector("[data-certifications-list]");
     if (!list) return;
-    list.innerHTML = certifications.map((item) => `<article class="certification-item reveal"><span aria-hidden="true">✓</span><h3>${item.title}</h3></article>`).join("");
+    list.innerHTML = (getData().certifications || []).map((item) => `<article class="certification-item reveal"><span aria-hidden="true">✓</span><h3>${item.title}</h3></article>`).join("");
   };
 
-  renderHighlights();
-  renderProjects();
-  renderExperiences();
-  renderAwards();
-  renderActivities();
-  renderCompetitions();
-  renderPrograms();
-  renderEducation();
-  renderCertifications();
+  const renderLocalizedData = () => {
+    renderHighlights();
+    renderProjects();
+    renderExperiences();
+    renderAwards();
+    renderActivities();
+    renderCompetitions();
+    renderPrograms();
+    renderEducation();
+    renderCertifications();
+    document.querySelectorAll(".reveal").forEach((item) => {
+      if (item.getBoundingClientRect().top < window.innerHeight) item.classList.add("is-visible");
+    });
+  };
+
+  renderLocalizedData();
 
   document.querySelectorAll("[data-filter]").forEach((button) => {
     button.addEventListener("click", () => {
+      currentFilter = button.dataset.filter;
       document.querySelectorAll("[data-filter]").forEach((item) => {
         const active = item === button;
         item.classList.toggle("is-active", active);
         item.setAttribute("aria-pressed", String(active));
       });
-      renderProjects(button.dataset.filter);
+      renderProjects();
     });
   });
 
+  const updateMenuLabel = () => {
+    if (!menuToggle) return;
+    const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+    const label = getText(isOpen ? "common.menu.close" : "common.menu.open");
+    menuToggle.setAttribute("aria-label", label);
+    const screenReaderLabel = menuToggle.querySelector(".sr-only");
+    if (screenReaderLabel) screenReaderLabel.textContent = label;
+  };
+
   if (menuToggle && siteNav) {
+    updateMenuLabel();
     menuToggle.addEventListener("click", () => {
       const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
       menuToggle.setAttribute("aria-expanded", String(!isOpen));
       siteNav.classList.toggle("is-open", !isOpen);
       document.body.classList.toggle("menu-open", !isOpen);
+      updateMenuLabel();
     });
     siteNav.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => {
       menuToggle.setAttribute("aria-expanded", "false");
       siteNav.classList.remove("is-open");
       document.body.classList.remove("menu-open");
+      updateMenuLabel();
     }));
   }
 
@@ -219,4 +245,10 @@
     }, { rootMargin: "-35% 0px -55%", threshold: 0 });
     sections.forEach((section) => navObserver.observe(section));
   }
+
+  window.addEventListener("portfolio:languagechange", () => {
+    renderLocalizedData();
+    updateMenuLabel();
+    updateSlideshowToggle();
+  });
 })();

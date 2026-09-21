@@ -21,11 +21,18 @@
 
 ## 프로젝트 추가 방법
 
-1. `assets/js/data.js`의 `projects` 배열에 새 프로젝트 객체를 추가합니다.
+1. `assets/js/data.js`의 `ko.projects`, `en.projects` 배열에 새 프로젝트 객체를 각각 추가합니다.
 2. `id`와 연결할 상세 페이지 파일명(`projects/<id>.html`)을 정합니다.
 3. `projects/` 안에 기존 상세 페이지를 복사해 새 프로젝트 내용을 작성합니다.
 4. 프로젝트의 `title`, `description`, `category`, `period`, `tags`, `visual` 값을 수정합니다.
 5. 결과물이나 수치가 확정되지 않은 경우 임의로 채우지 말고 `TODO` 또는 플레이스홀더로 남겨주세요.
+
+## 한국어 / 영어 콘텐츠 관리
+
+- 정적 HTML 문구에는 `data-i18n="번역키"`를 사용하고, 영어 번역은 `assets/js/i18n.js`에서 관리합니다.
+- `alt`, `aria-label`, `title`, 메타 설명 같은 속성은 `data-i18n-attr="속성명:번역키"` 형식으로 연결합니다.
+- 홈의 프로젝트·경력·수상 등 동적 목록은 `assets/js/data.js`의 `ko`, `en` 데이터에서 관리합니다.
+- 사용자가 선택한 언어는 `localStorage`의 `portfolio-language` 키에 저장되며, 최초 방문 기본값은 한국어입니다.
 
 ## 연락처 및 개인 정보 수정
 
