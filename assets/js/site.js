@@ -70,7 +70,7 @@
 
   const visualMarkup = (project, featuredProjects) => {
     const visualClass = project.thumbnail
-      ? `project-visual-image${project.thumbnailRatio === "square" ? " project-visual-square" : ""}`
+      ? `project-visual-image${project.thumbnailFit === "contain" ? " project-visual-contain" : ""}${project.thumbnailRatio === "square" ? " project-visual-square" : ""}`
       : `visual-${project.visual}`;
     return `
       <div class="project-visual ${visualClass}" aria-hidden="true">
@@ -85,7 +85,7 @@
     <a class="project-card reveal" href="projects/${project.id}.html" data-project-card data-category="${project.category}">
       ${visualMarkup(project, featuredProjects)}
       <div class="project-content">
-        <div class="project-topline"><span>${project.displayCategory || project.category}</span></div>
+        <div class="project-topline"><span>${project.displayCategory || project.category}</span>${project.status ? `<span class="project-status">${project.status}</span>` : ""}</div>
         <h3>${project.title}</h3>
         <p>${project.description}</p>
         ${project.award ? `<p class="project-award">${project.award}</p>` : ""}
