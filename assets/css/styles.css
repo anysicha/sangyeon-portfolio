@@ -204,3 +204,41 @@ h1 em, h2 em { color: var(--accent-deep); font-style: normal; }
   .golift-gallery { grid-template-columns: 1fr; }
   .golift-gallery figure { width: min(100%, 330px); justify-self: center; }
 }
+
+/* Direct App Store access on phones; downloadable, scannable QR codes on desktop. */
+.app-install-section { padding: 36px 0 8px; }
+.app-install-panel { display: grid; grid-template-columns: minmax(0, 1fr) 240px; align-items: center; gap: 48px; padding: 40px; border: 1px solid var(--line); background: var(--paper-strong); }
+.app-install-copy { min-width: 0; }
+.app-install-copy .section-kicker { margin-bottom: 12px; color: #38581e; }
+.app-install-copy h2 { margin: 0 0 12px; font-size: clamp(25px, 3vw, 36px); font-weight: 550; line-height: 1.25; letter-spacing: -.04em; }
+.app-release { margin: 0 0 24px; color: var(--muted); font-size: 13px; }
+.app-install-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 18px 24px; }
+.app-install-actions .button { text-transform: none; letter-spacing: 0; }
+.app-qr-save { display: inline-block; padding: 10px 0; border-bottom: 1px solid var(--ink); font-size: 12px; font-weight: 650; }
+.app-install-note { max-width: 520px; margin: 22px 0 0; color: var(--muted); font-size: 13px; }
+.app-install-checked { margin: 10px 0 0; color: var(--muted); font-size: 11px; }
+.app-install-qr { width: 240px; margin: 0; text-align: center; }
+.app-install-qr a { display: block; background: #fff; }
+.app-install-qr img { display: block; width: 100%; height: auto; image-rendering: pixelated; }
+.app-install-qr figcaption { margin-top: 12px; color: var(--muted); font-size: 12px; }
+.app-install-panel a:focus-visible { outline: 3px solid var(--ink); outline-offset: 5px; }
+.app-release-gallery-section { padding: 16px 0 100px; }
+.app-release-gallery-section h2 { margin-bottom: 30px; font-size: clamp(26px, 3vw, 38px); font-weight: 550; line-height: 1.35; letter-spacing: -.04em; }
+.app-release-gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; gap: 18px; }
+.app-release-gallery figure { margin: 0; overflow: hidden; border: 1px solid var(--line); background: var(--paper-strong); }
+.app-release-gallery img { display: block; width: 100%; height: auto; object-fit: contain; }
+.app-release-gallery figcaption { padding: 16px; color: var(--muted); font-size: 12px; line-height: 1.65; }
+@media (max-width: 900px) {
+  .app-install-panel { gap: 28px; padding: 28px; }
+  .app-release-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 680px) {
+  .app-install-section { padding-top: 24px; }
+  .app-install-panel { grid-template-columns: 1fr; gap: 30px; padding: 24px; }
+  .app-install-qr { width: min(240px, 100%); justify-self: center; }
+  .app-release-gallery-section { padding-bottom: 60px; }
+  .app-release-gallery { grid-template-columns: 1fr; }
+  .app-release-gallery figure { width: min(100%, 360px); justify-self: center; }
+}
+/* Long framework names must not expand a narrow detail grid. */
+.detail-content > * { min-width: 0; overflow-wrap: anywhere; }
