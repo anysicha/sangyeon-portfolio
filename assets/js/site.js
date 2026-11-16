@@ -11,6 +11,19 @@
 
   if (year) year.textContent = new Date().getFullYear();
 
+  const qrDialog = document.querySelector("#portfolio-qr-dialog");
+  document.querySelector("[data-qr-open]")?.addEventListener("click", (event) => {
+    if (typeof qrDialog?.showModal !== "function") return;
+    event.preventDefault();
+    qrDialog.showModal();
+  });
+  qrDialog?.addEventListener("click", (event) => {
+    const bounds = qrDialog.getBoundingClientRect();
+    if (event.target === qrDialog && (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom)) {
+      qrDialog.close();
+    }
+  });
+
   const profileSlideshow = document.querySelector("[data-profile-slideshow]");
   let updateSlideshowToggle = () => {};
 

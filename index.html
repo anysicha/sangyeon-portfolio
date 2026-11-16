@@ -11,10 +11,10 @@
     <meta property="og:description" content="문제를 발견하고, 발빠르게 움직여 해결합니다." data-i18n-attr="content:home.meta.ogDescription" />
     <meta property="og:type" content="website" />
     <title data-i18n="home.meta.title">김상연 포트폴리오 — 산업공학 · 데이터 · AI</title>
-    <link rel="stylesheet" href="assets/css/styles.css?v=releases-20261109" />
-    <script src="assets/js/i18n.js?v=releases-20261109" defer></script>
+    <link rel="stylesheet" href="assets/css/styles.css?v=portfolio-qr-20261116" />
+    <script src="assets/js/i18n.js?v=portfolio-qr-20261116" defer></script>
     <script src="assets/js/data.js?v=releases-20261109" defer></script>
-    <script src="assets/js/site.js?v=releases-20261109" defer></script>
+    <script src="assets/js/site.js?v=portfolio-qr-20261116" defer></script>
   </head>
   <body data-page="home">
     <a class="skip-link" href="#main-content" data-i18n="common.skip">본문으로 바로가기</a>
@@ -82,6 +82,25 @@
           </div>
         </div>
       </section>
+
+      <aside class="portfolio-share container" aria-label="포트폴리오 QR" data-i18n-attr="aria-label:home.qr.label">
+        <details class="portfolio-qr" open>
+          <summary data-i18n="home.qr.summary">휴대폰으로 보기</summary>
+          <a class="portfolio-qr-preview" href="assets/images/portfolio-qr.png" target="_blank" rel="noopener noreferrer" data-qr-open aria-haspopup="dialog" aria-controls="portfolio-qr-dialog">
+            <img src="assets/images/portfolio-qr.png" width="358" height="390" alt="김상연 포트폴리오 사이트 접속 QR 코드" data-i18n-attr="alt:home.qr.alt" />
+            <span data-i18n="home.qr.enlarge">QR 크게 보기 ↗</span>
+          </a>
+        </details>
+      </aside>
+
+      <dialog class="portfolio-qr-dialog" id="portfolio-qr-dialog" aria-labelledby="portfolio-qr-title" aria-describedby="portfolio-qr-instructions">
+        <form method="dialog" class="portfolio-qr-dialog-heading">
+          <h2 id="portfolio-qr-title" data-i18n="home.qr.label">포트폴리오 QR</h2>
+          <button class="portfolio-qr-close" aria-label="닫기" data-i18n-attr="aria-label:home.qr.close" autofocus>×</button>
+        </form>
+        <p id="portfolio-qr-instructions" data-i18n="home.qr.instructions">휴대폰 카메라로 스캔하면<br />포트폴리오 사이트로 연결됩니다.</p>
+        <img src="assets/images/portfolio-qr.png" width="358" height="390" alt="김상연 포트폴리오 사이트 접속 QR 코드" data-i18n-attr="alt:home.qr.alt" />
+      </dialog>
 
       <section class="projects section" id="projects" aria-labelledby="projects-title">
         <div class="container">

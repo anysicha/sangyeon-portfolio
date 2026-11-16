@@ -33,6 +33,12 @@
       "common.footer.care": "Built with curiosity &amp; care.",
 
       "home.meta.title": "Sangyeon Kim — Industrial Engineering · Data · AI",
+      "home.qr.label": "Portfolio QR",
+      "home.qr.summary": "View on your phone",
+      "home.qr.alt": "QR code to visit Sangyeon Kim's portfolio",
+      "home.qr.enlarge": "Enlarge QR ↗",
+      "home.qr.close": "Close",
+      "home.qr.instructions": "Scan with your phone's camera<br />to open this portfolio.",
       "home.meta.description": "Sangyeon Kim's portfolio spanning industrial engineering, data, AI, human-centered design, and entrepreneurship.",
       "home.meta.ogDescription": "I identify meaningful problems and move quickly to solve them.",
       "home.hero.name": "Sangyeon Kim",
