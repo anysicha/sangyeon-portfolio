@@ -40,3 +40,12 @@
 - 이메일: `anysicha@naver.com`
 - Instagram: `https://www.instagram.com/top_year17/`
 - 프로필 이미지: 이미지가 준비되면 `assets/images/profile.jpg`를 추가하고 `index.html`의 플레이스홀더 영역을 이미지로 교체
+
+## 포트폴리오 V2
+
+최신 포트폴리오는 `portfolio-v2/`에서 관리합니다. 배민아카데미 AI 강의 이력과 현장 사진, FINDS LAB 연구활동증명서의 비공개 Sites 링크, LLM 연구 포스터, 인스타그램 `@do_sang17` 링크를 포함합니다.
+
+- 정적 배포 파일: `portfolio-v2/dist/`
+- 상세 페이지 원문: `portfolio-v2/content/`
+- 로컬 확인: 저장소 루트에서 `python3 -m http.server 4173` 실행 후 `/portfolio-v2/dist/` 접속
+- [GitHub Pages에서 V2 보기](https://anysicha.github.io/sangyeon-portfolio/portfolio-v2/dist/)

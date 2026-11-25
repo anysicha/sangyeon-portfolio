@@ -1,0 +1,46 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>고립 GoLift — 김상연</title><meta name="description" content="폰은 내려놓고, 성장은 눈에 보이게."><meta name="theme-color" content="#ffffff"><link rel="icon" href="../assets/favicon.svg"><link rel="stylesheet" href="../assets/style.css"><script src="../assets/main.js" defer></script></head><body><a class="skip" href="#main">본문으로 바로가기</a><header class="header"><div class="nav-wrap"><a class="brand" href="../index.html">상연<span class="brand-dot">.</span></a><nav aria-label="주요 메뉴"><a href="../index.html#work">만든 것들</a><a href="../index.html#about">저에 대해</a><a href="../index.html#journey">지나온 길</a></nav><a class="contact-nav" href="../index.html#contact">이야기 나누기</a></div><div class="reading-progress" aria-hidden="true"></div></header><main id="main" class="detail-main"><div class="detail-wrap"><a href="../index.html#work" class="back-link">만든 것들로 돌아가기</a><p class="detail-kicker">Product · Digital Wellbeing</p><h1 class="detail-title">고립 GoLift</h1><p class="detail-lead">폰은 내려놓고, 성장은 눈에 보이게.</p><div class="detail-tags"><span>SwiftUI</span><span>SwiftData</span><span>Screen Time API</span><span>Rive</span><span>Firebase</span><span>StoreKit 2</span><span>ActivityKit</span><span>App Store 출시</span></div><figure class="detail-cover phone-cover"><img src="../assets/images/golift/release-02-home-raw.webp" alt="고립 GoLift 프로젝트 이미지" fetchpriority="high"></figure><div class="detail-body"><a class="button primary" href="https://apps.apple.com/kr/app/%EA%B3%A0%EB%A6%BD-%ED%8F%B0-%EB%81%84%EA%B3%A0-%EC%9A%B4%EB%8F%99-%EC%A7%91%EC%A4%91/id6824419950?l=en-GB" target="_blank" rel="noopener noreferrer">App Store에서 보기</a>
+<h2>폰은 내려놓고,<br>성장은 눈에 보이게.</h2><p>고립은 운동 기록을 더 많이 입력하게 만드는 대신, 운동에 집중한 시간을 쌓도록 돕는 앱입니다. 운동 중에는 허용한 앱만 사용할 수 있게 하고, 운동을 마치면 집중한 시간과 운동 부위에 따라 고릴라의 모습이 달라집니다.<br><br>운동 전에는 준비를 짧게, 운동 중에는 조작을 적게, 운동 후에는 변화를 분명하게 보여주는 경험을 목표로 했습니다.</p>
+
+<h3>프로젝트 배경</h3><p>운동 중 스마트폰은 음악을 듣고 기록을 남기는 도구이면서, 운동에서 시선을 빼앗는 도구이기도 합니다. 단순히 모든 앱을 막으면 필요한 기능까지 불편해지고, 상세한 기록을 요구하면 오히려 스마트폰을 더 자주 보게 됩니다.<br><br>고립은 이 충돌에서 출발했습니다. 필요한 앱과 기록은 남겨 두면서 불필요한 사용을 줄이고, 집중한 시간을 다시 운동하고 싶어지는 보상으로 연결하고자 했습니다.</p>
+
+
+<h3>설계에서 중요하게 본 세 가지</h3>
+
+
+<h3>기록을 줄이되, 기억해야 할 부담은 남기지 않기</h3><p>처음에는 운동 중 조작을 최소화하는 것에 무게를 뒀습니다. 하지만 세트와 무게를 운동이 끝난 뒤 입력하려면 잊기 쉽다는 문제가 있었습니다.<br><br>그래서 운동 중 기록 기능을 유지하고 반복 입력을 줄였습니다. 직전 세트의 값을 복사하고, 기록창을 다시 열면 마지막 종목으로 돌아가며, 입력한 값은 바로 저장하도록 했습니다. 화면을 덜 보는 목표와 필요한 기록을 남기는 목표를 함께 다뤘습니다.</p>
+
+
+<h3>쉬는 날이 실패로 느껴지지 않는 보상</h3><p>연속 기록이 끊기면 보상이 사라지는 방식 대신, 지금까지 쌓은 집중을 인정하는 누적 업적을 선택했습니다. 운동을 쉬었다가 돌아와도 기록과 달성한 업적이 남습니다.<br><br>또한 성장 보상을 판매하지 않고, 구매 항목은 모션과 코스튬으로 한정했습니다. 사용자가 운동으로 얻는 변화와 구매로 얻는 꾸미기를 구분한 제품 원칙입니다.</p>
+
+
+
+
+<h3>캐릭터의 변화가 운동 부위와 연결되도록 만들기</h3><p>운동 결과를 단순한 경험치 막대로만 보여주지 않고, 일곱 부위가 따로 변하는 캐릭터로 표현했습니다. Rive 기반 2.5D 포즈 시스템을 구성해 체형이 달라도 같은 포즈와 코스튬을 사용할 수 있도록 했습니다.<br><br>새 포즈는 데이터 정의를 추가하는 방식으로 확장하고, 애니메이션 자산을 읽지 못하면 기존 Canvas 그림으로 대체합니다. 성장 계산과 그림 표현을 분리해 계산 규칙을 바꾸지 않고 캐릭터를 개선할 수 있게 했습니다.</p>
+
+
+
+
+<h3>핵심 기능</h3>
+<ul>
+<li>집중 운동: 허용한 앱을 제외한 앱 사용을 제한하고, 운동 종류와 집중 시간을 기록합니다.</li>
+<li>빠른 세트 기록: 운동 중 세트·무게·횟수를 적고 직전 세트를 복사합니다. 종료 후 확인 화면으로 기록이 이어집니다.</li>
+<li>부위별 캐릭터 성장: 가슴·등·이두·삼두·어깨·하체·복근이 각각 성장하고, 체형에 맞춰 캐릭터의 크기와 선명도가 달라집니다.</li>
+<li>성장 비교와 공유: 처음 모습과 현재 모습을 비교하고, 폰 없이 운동한 시간을 공유 카드로 남깁니다.</li>
+<li>누적 업적: 연속 출석 대신 누적 시간·운동 횟수·운동일 등으로 칭호와 전용 꾸미기를 제공합니다.</li>
+<li>꾸미기 상점: 코스튬과 모션을 고르는 상점을 구현했습니다. 근육 성장과 꾸미기 구매는 분리했습니다.</li><li>실시간 현황: 잠금 화면과 Dynamic Island에서 운동 시간을 확인합니다.</li><li>기기 중심 기록: 회원가입 없이 시작하고, 운동 기록과 신체 입력값은 iPhone 안에 저장합니다.</li></ul>
+
+
+<h3>사용 흐름</h3><p>운동 선택 → 시작 준비 → 집중 운동 → 실제 운동 확인 → 성장·업적 결과 → 홈<br><br>운동 중에는 시간 확인·운동 종류 전환·선택적인 세트 기록·종료에 집중합니다. 캐릭터 성장과 꾸미기 경험은 운동을 마친 뒤에 배치했습니다.</p>
+
+
+
+
+<h3>구현과 검증</h3><p>SwiftUI와 SwiftData로 계획·진행 중 세션·확정 기록·성장 이력을 연결했습니다. 앱을 다시 열면 운동 상태와 확인 대기 기록을 복원하고, 세션별 성장 원장으로 같은 보상이 중복 반영되지 않게 했습니다.<br><br>집중 제어에는 FamilyControls·ManagedSettings·DeviceActivity를 사용하고, ActivityKit 기반 실시간 현황으로 잠금 화면과 Dynamic Island에서 운동 시간을 확인하도록 했습니다. 운동 기록과 신체 입력값은 기기에 보관하며, 선택 로그인과 StoreKit 2 꾸미기 구매는 운동·성장 흐름과 분리했습니다.<br><br>2026년 11월 2일 통합 점검 기록에서는 iOS 테스트 129개와 서버 테스트 3개, 실기기용 서명 빌드를 통과했고 컴파일 경고는 0개였습니다. 자동화 검증은 계산·저장 로직의 근거로 두고, 실제 인증·거래·장시간 집중 동작과 구분했습니다.<br><br><strong>2026년 11월 5일 App Store에 정식 출시</strong>했습니다. 11월 9일 확인한 공개 버전은 1.0입니다.</p>
+
+
+<h3>성장 표현의 의미</h3><p>캐릭터의 근육과 체지방 수치는 게임 내 성장 표현입니다. 실제 신체 변화를 측정하거나 예측한 값이 아닙니다.</p>
+
+<h3>출시 후 개선</h3><p>로컬 후속 버전 1.0.1에서는 운동 계획의 요일 반복·복사, 운동하는 날 알림, 사용 통계 전송 설정과 3시간 알림 시점 보완을 진행했습니다.<br><br>현재 App Store 공개 버전은 1.0이며, 위 항목은 공개 버전과 구분한 후속 개발 내용입니다.</p>
+
+<h3>프로젝트를 통해 배운 점</h3><p>기능을 줄이는 것과 사용자의 부담을 줄이는 것은 같지 않았습니다. 운동 중 기록 버튼을 없애면 화면 조작은 줄어도, 나중에 세트와 무게를 기억해야 하는 부담이 커집니다.<br><br>고립을 만들며 사용자가 언제 무엇을 기억하고 선택해야 하는지 먼저 살펴보게 됐습니다. 제품 규칙과 예외 상황을 정의하고, AI 코딩 도구와 협업한 구현을 테스트·실제 화면·실기기 피드백으로 확인하며 개선했습니다.<br><br>이제 정식 출시를 마쳤고, 집중 흐름과 기록 조작, 성장 보상의 이해도를 실제 사용 맥락에서 계속 다듬고 있습니다.</p>
+</div><div class="detail-gallery"><img src="../assets/images/golift/release-03-plan.webp" alt="날짜별 운동 계획과 종목 선택을 보여주는 고립 소개 화면" loading="lazy"><img src="../assets/images/golift/release-04-workout.webp" alt="집중 운동 타이머와 세트 기록, 운동 종료 버튼이 있는 고립 소개 화면" loading="lazy"><img src="../assets/images/golift/release-05-result.webp" alt="집중 시간과 부위별 캐릭터 성장을 보여주는 고립 결과 소개 화면" loading="lazy"><img src="../assets/images/golift/release-07-detail.webp" alt="앞뒤 고릴라와 부위별 성장 단계를 보여주는 고립 캐릭터 상세 소개 화면" loading="lazy"><img src="../assets/images/golift/release-08-stats.webp" alt="요일별 집중 시간과 누적 운동 기록을 보여주는 고립 통계 소개 화면" loading="lazy"><img src="../assets/images/golift/release-09-wardrobe.webp" alt="파워리프터 코스튬과 모션 선택을 보여주는 고립 옷장 소개 화면" loading="lazy"></div><div class="detail-bottom"><h2>다른 프로젝트도 둘러보세요.</h2><a class="button secondary" href="../index.html#projects">모든 프로젝트 보기</a></div></div></main><footer class="footer wrap"><a href="../index.html" class="brand">상연<span class="brand-dot">.</span></a><span>© 2026 Sangyeon Kim</span><a href="../index.html#contact">이야기 나누기</a></footer></body></html>
